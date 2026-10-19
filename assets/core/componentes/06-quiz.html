@@ -1,0 +1,11 @@
+<!-- {"titulo": "Predice el resultado", "cuando": "Cuando la unidad no se puede ejecutar en el navegador. Las respuestas salen de ejecuciones reales; cada opción incorrecta explica su error en data-why."} -->
+<div class="quiz">
+<pre class="code">sum(<span class="s">"2"</span>, <span class="fb">3</span>)</pre>
+  <p>¿Qué devuelve esta llamada?</p>
+  <div class="options">
+    <button class="opt" type="button" data-why="Con un texto, + no suma: concatena.">5</button>
+    <button class="opt" type="button" data-correct="true" data-why="&quot;2&quot; es texto, así que + pega los dos valores y devuelve el texto &quot;23&quot;.">"23"</button>
+    <button class="opt" type="button" data-why="No lanza error: JavaScript convierte 3 en texto sin avisar.">TypeError</button>
+  </div>
+  <p class="feedback" aria-live="polite"></p>
+</div>

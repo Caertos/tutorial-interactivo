@@ -1,0 +1,19 @@
+{
+  "name": "cuadricula",
+  "titulo": "Arreglo o matriz con punteros",
+  "forma": ["arreglo", "punteros", "algoritmo", "matriz"],
+  "cuando": "Algoritmos sobre arreglos y matrices: búsqueda binaria, dos punteros, ventana deslizante, ordenamientos con intercambios, recorridos de una cuadrícula 2D, programación dinámica en tabla.",
+  "cuandoNo": "Más de 12 celdas por fila o 8×8 en matriz (recorta). Datos con columnas con nombre (usa «tabla»). Referencias entre objetos (usa «memoria»).",
+  "config": {
+    "titulo": "opcional",
+    "intro": "Leyenda del paso 0.",
+    "valores": [2, 5, 8],
+    "matriz": [[1, 2], [3, 4]],
+    "indices": true,
+    "colores": { "lo": 1, "hi": 2, "mid": "hl" },
+    "textoFijo": "texto de la leyenda para celdas fijadas (por defecto «en su sitio»)",
+    "pasos": [
+      { "punteros": { "lo": 0, "hi": 9 }, "ventana": [0, 9], "comparar": [4], "intercambiar": [0, 1], "fijar": [5], "descartar": [0, 1], "restaurar": false, "valores": "reemplaza todos los valores", "texto": "Leyenda. En matriz, cada posición es [fila, columna] y la ventana [[f1, c1], [f2, c2]]. punteros y ventana se mantienen; fijar y descartar se acumulan; comparar solo en este paso." }
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "memoria",
+  "titulo": "Pila, montículo y referencias",
+  "forma": ["referencias", "memoria", "mutación", "copia"],
+  "cuando": "Explicar copia frente a referencia: asignar objetos, mutar a través de una referencia compartida, copias superficiales, paso de argumentos a funciones, marcos de llamada y objetos que quedan sin referencias (basura).",
+  "cuandoNo": "Valores primitivos sin objetos (usa «traza»). Más de 5 objetos o 3 marcos a la vez: simplifica. Para resaltar solo qué propiedades cambian, usa «antes-despues».",
+  "config": {
+    "intro": "Leyenda del paso 0.",
+    "marcos": [{ "nombre": "global" }],
+    "tituloCodigo": "Código",
+    "lang": "js",
+    "tituloPila": "Pila",
+    "tituloHeap": "Montículo (heap)",
+    "pasos": [
+      { "codigo": "línea que se resalta en el listado", "texto": "Leyenda",
+        "crear": [{ "id": "1", "tipo": "Object", "campos": { "n": 1, "hijo": { "ref": "2" } } }, { "id": "3", "elementos": [1, 2] }],
+        "vars": { "a": { "ref": "1" }, "b": 5, "global.x": "variable de otro marco: marco.nombre" },
+        "mutar": [{ "id": "1", "campo": "n", "valor": 2 }],
+        "llamar": "f(o)", "volver": false, "recolectar": false }
+    ]
+  }
+}

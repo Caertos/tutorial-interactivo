@@ -1,0 +1,13 @@
+{
+  "name": "join",
+  "titulo": "JOIN entre dos tablas",
+  "forma": ["SQL", "combinación", "claves", "dataframe merge"],
+  "cuando": "Explicar cómo se combinan dos tablas por una clave: coincidencias, filas que se multiplican con claves repetidas, relleno con NULL y diferencias entre INNER, LEFT, RIGHT, FULL y CROSS. Sirve también para merge de pandas.",
+  "cuandoNo": "Tablas de más de 6 filas o 4 columnas por lado (se vuelve ilegible en el móvil), uniones por varias columnas o condiciones que no son igualdad (muestra el resultado con «tabla»).",
+  "config": {
+    "izquierda": { "nombre": "alumnos", "serie": 1, "clave": "curso", "etiqueta": "nombre", "columnas": ["id", "nombre", "curso"], "filas": [[1, "Ana", "Mate"], [3, "Eva", null]] },
+    "derecha": { "nombre": "horarios", "serie": 2, "clave": "curso", "etiqueta": "dia", "columnas": ["curso", "dia"], "filas": [["Mate", "lunes"]] },
+    "tipo": "INNER",
+    "tipos": ["INNER", "LEFT", "RIGHT", "FULL", "CROSS"]
+  }
+}

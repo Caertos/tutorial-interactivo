@@ -1,0 +1,17 @@
+/* viz: secuencia */
+.sq text{font-family:var(--mono); font-variant-ligatures:none}
+.sq-life{stroke:var(--line); stroke-width:1.5; stroke-dasharray:4 4}
+.sq-head{stroke-width:1.5}
+.sq .sq-name{font-family:var(--display); font-weight:600; font-size:14px; fill:var(--ink)}
+.sq-act{fill:var(--surface); stroke:var(--muted); stroke-width:1.2}
+.sq-line{fill:none; stroke:var(--ink); stroke-width:1.6}
+.sq-msg.async .sq-line{stroke-dasharray:6 4}
+.sq-msg.retorno .sq-line{stroke:var(--muted); stroke-dasharray:4 4}
+.sq-msg.now .sq-line{stroke:var(--hl); stroke-width:2.4}
+.sq-lbl{font-size:13px; fill:var(--ink)}
+.sq-msg.retorno .sq-lbl{fill:var(--muted)}
+.sq-msg.now .sq-lbl{fill:var(--ink)}
+.sq-lbg{fill:var(--hl-soft)}
+.sq-note{fill:var(--surface); stroke:var(--muted); stroke-width:1; stroke-dasharray:3 3}
+.sq-msg.now .sq-note{fill:var(--hl-soft); stroke:var(--hl); stroke-dasharray:none}
+.sq .sq-note-t{font-family:var(--display); font-size:13px; fill:var(--ink)}

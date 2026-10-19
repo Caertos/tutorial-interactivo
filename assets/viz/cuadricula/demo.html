@@ -1,0 +1,33 @@
+<div class="viz" data-viz="cuadricula" aria-label="Búsqueda binaria del valor 23 en un arreglo ordenado de 10 elementos">
+  <script type="application/json">
+  {
+    "titulo": "Búsqueda binaria de 23",
+    "intro": "El arreglo está ordenado. La búsqueda binaria descarta la mitad del rango en cada comparación.",
+    "valores": [2, 5, 8, 12, 16, 23, 38, 56, 72, 91],
+    "colores": { "lo": 1, "hi": 2, "mid": 4 },
+    "textoFijo": "encontrado",
+    "pasos": [
+      { "punteros": { "lo": 0, "hi": 9 }, "ventana": [0, 9], "texto": "lo y hi delimitan el rango donde puede estar 23: al principio, todo el arreglo." },
+      { "punteros": { "lo": 0, "mid": 4, "hi": 9 }, "comparar": [4], "texto": "mid = (0 + 9) // 2 = 4. a[4] = 16 es menor que 23." },
+      { "punteros": { "lo": 5, "hi": 9 }, "ventana": [5, 9], "descartar": [0, 1, 2, 3, 4], "texto": "23 solo puede estar a la derecha: lo = mid + 1 = 5. Media lista descartada." },
+      { "punteros": { "lo": 5, "mid": 7, "hi": 9 }, "comparar": [7], "texto": "mid = (5 + 9) // 2 = 7. a[7] = 56 es mayor que 23." },
+      { "punteros": { "lo": 5, "hi": 6 }, "ventana": [5, 6], "descartar": [7, 8, 9], "texto": "Ahora a la izquierda: hi = mid − 1 = 6." },
+      { "punteros": { "lo": 5, "mid": 5, "hi": 6 }, "comparar": [5], "fijar": [5], "ventana": null, "texto": "mid = (5 + 6) // 2 = 5 y a[5] = 23: encontrado tras 3 comparaciones, frente a 6 de una búsqueda lineal." }
+    ]
+  }
+  </script>
+</div>
+<div class="viz" data-viz="cuadricula" aria-label="Primera pasada del ordenamiento de burbuja sobre cuatro números">
+  <script type="application/json">
+  {
+    "titulo": "Burbuja: primera pasada",
+    "intro": "En cada pasada se comparan vecinos y se intercambian si están desordenados.",
+    "valores": [5, 1, 4, 2],
+    "pasos": [
+      { "punteros": { "j": 0 }, "comparar": [0, 1], "intercambiar": [0, 1], "texto": "a[0] = 5 > a[1] = 1: se intercambian." },
+      { "punteros": { "j": 1 }, "comparar": [1, 2], "intercambiar": [1, 2], "texto": "5 > 4: se intercambian. El 5 sigue avanzando." },
+      { "punteros": { "j": 2 }, "comparar": [2, 3], "intercambiar": [2, 3], "fijar": [3], "texto": "5 > 2: se intercambian. Al terminar la pasada, el mayor queda en su sitio: [1, 4, 2, 5]." }
+    ]
+  }
+  </script>
+</div>

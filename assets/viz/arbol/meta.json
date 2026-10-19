@@ -1,0 +1,16 @@
+{
+  "name": "arbol",
+  "titulo": "Árbol y recorridos",
+  "forma": ["árbol", "jerarquía", "recorrido", "búsqueda"],
+  "cuando": "Estructuras jerárquicas: DOM, AST, árbol de archivos, árbol de componentes, un índice tipo árbol. Muestra recorridos (preorden, postorden, anchura), caminos de búsqueda y subárboles plegados.",
+  "cuandoNo": "Nodos con varios padres o ciclos (usa «grafo»). Más de unos 20 nodos visibles o 5 niveles: pliega subárboles. Si solo importa el orden de visita, «traza» es más compacto.",
+  "config": {
+    "intro": "Leyenda del paso 0.",
+    "raiz": { "id": "body", "etiqueta": "body", "detalle": "segunda línea opcional", "serie": 1, "plegado": false, "hijos": [{ "id": "h1", "etiqueta": "h1" }] },
+    "recorrido": "preorden | postorden | anchura (genera los pasos si no hay \"pasos\")",
+    "numerar": true,
+    "pasos": [
+      { "actual": "id o etiqueta del nodo actual (se acumula como visitado)", "visitar": ["más nodos visitados"], "camino": ["body", "h1"], "encontrado": ["h1"], "plegar": ["id"], "desplegar": ["id"], "texto": "Leyenda del paso" }
+    ]
+  }
+}

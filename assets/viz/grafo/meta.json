@@ -1,0 +1,20 @@
+{
+  "name": "grafo",
+  "titulo": "Grafo dirigido e historial de git",
+  "forma": ["grafo", "dependencias", "git", "orden de ejecución"],
+  "cuando": "Modo «generico»: dependencias entre módulos, grafos de llamadas, DAG de tareas y su orden (topológico, de evaluación). Modo «git»: commits por rama, ramas y HEAD; muestra rebase, merge, reset o cherry-pick paso a paso, con los commits que quedan inalcanzables.",
+  "cuandoNo": "Jerarquías con un solo padre por nodo (usa «arbol»). Estados y eventos (usa «estado»). Más de 12 nodos o 10 commits: recorta el ejemplo.",
+  "config": {
+    "modo": "generico | git (por defecto generico)",
+    "intro": "Leyenda del paso 0.",
+    "direccion": "abajo | derecha (solo generico)",
+    "nodos": [{ "id": "app", "etiqueta": "app.js", "detalle": "segunda línea opcional", "serie": 1 }],
+    "aristas": [{ "desde": "app", "hacia": "api", "etiqueta": "opcional", "estilo": "discontinua" }],
+    "pasos (generico)": [{ "actual": ["http"], "hecho": ["http"], "aristas": [["app", "router"]], "texto": "Leyenda; hecho se acumula y se numera" }],
+    "ramas": [{ "nombre": "main", "serie": 1 }],
+    "commits": [{ "id": "A", "rama": "main", "padres": [], "mensaje": "inicio" }],
+    "refs": { "main": "C", "feature": "E" },
+    "head": "nombre de rama, o id de commit para HEAD separado",
+    "pasos (git)": [{ "agregar": [{ "id": "D'", "rama": "feature", "padres": ["C"], "mensaje": "filtros" }], "refs": { "feature": "E'", "vieja": null }, "head": "feature", "resaltar": ["D'"], "texto": "Leyenda" }]
+  }
+}

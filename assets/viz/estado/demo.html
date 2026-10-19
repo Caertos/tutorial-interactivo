@@ -1,0 +1,48 @@
+<div class="viz" data-viz="estado" aria-label="Máquina de estados del ciclo de vida de un pedido">
+  <script type="application/json">
+  {
+    "intro": "Un pedido empieza en «creado». Cada evento solo tiene efecto si hay una transición desde el estado actual.",
+    "estados": [
+      { "id": "creado", "nombre": "creado", "tipo": "inicial" },
+      { "id": "pagado", "nombre": "pagado" },
+      { "id": "cancelado", "nombre": "cancelado", "tipo": "final" },
+      { "id": "enviado", "nombre": "enviado" },
+      { "id": "entregado", "nombre": "entregado", "tipo": "final" }
+    ],
+    "transiciones": [
+      { "desde": "creado", "hacia": "pagado", "evento": "pagar" },
+      { "desde": "creado", "hacia": "cancelado", "evento": "cancelar" },
+      { "desde": "pagado", "hacia": "cancelado", "evento": "cancelar" },
+      { "desde": "pagado", "hacia": "enviado", "evento": "enviar" },
+      { "desde": "enviado", "hacia": "entregado", "evento": "entregar" }
+    ],
+    "pasos": [
+      { "evento": "pagar", "texto": "pagar: creado → pagado." },
+      { "evento": "enviar", "texto": "enviar: pagado → enviado." },
+      { "evento": "cancelar", "texto": "cancelar no tiene transición desde enviado: el evento se ignora (una API respondería, por ejemplo, 409 Conflict)." },
+      { "evento": "entregar", "texto": "entregar: enviado → entregado, un estado final. Ningún evento lo saca de ahí." }
+    ]
+  }
+  </script>
+</div>
+<div class="viz" data-viz="estado" aria-label="Estados de una promesa: pending, fulfilled y rejected">
+  <script type="application/json">
+  {
+    "intro": "new Promise((resolve, reject) => { resolve(42); reject(new Error('tarde')); }) empieza en pending.",
+    "direccion": "derecha",
+    "estados": [
+      { "id": "pending", "nombre": "pending", "tipo": "inicial" },
+      { "id": "fulfilled", "nombre": "fulfilled", "tipo": "final", "detalle": "valor: 42" },
+      { "id": "rejected", "nombre": "rejected", "tipo": "error" }
+    ],
+    "transiciones": [
+      { "desde": "pending", "hacia": "fulfilled", "evento": "resolve(v)" },
+      { "desde": "pending", "hacia": "rejected", "evento": "reject(e)" }
+    ],
+    "pasos": [
+      { "evento": "resolve(v)", "texto": "resolve(42) cumple la promesa: pasa a fulfilled con el valor 42." },
+      { "evento": "reject(e)", "texto": "reject llega tarde: una promesa ya resuelta no cambia de estado. Node imprime solo «fulfilled 42»." }
+    ]
+  }
+  </script>
+</div>

@@ -1,0 +1,28 @@
+{
+  "name": "grafico",
+  "titulo": "Gráfico de barras, líneas o dispersión",
+  "forma": ["cantidades", "comparación", "agregación", "SQL", "tendencia"],
+  "cuando": "Comparar cantidades (barras, también agrupadas o horizontales), ver una tendencia (líneas) o una relación entre dos medidas (dispersión). Ideal para el resultado de un GROUP BY o un groupby de pandas: los pasos revelan series y resaltan grupos.",
+  "cuandoNo": "Un solo número (escríbelo en grande), más de 4 series o 12 categorías (filtra o agrupa en «Otros»), dos medidas con escalas distintas (dos gráficos, nunca dos ejes). Para ver filas exactas, usa «tabla».",
+  "config": {
+    "tipo": "barras | lineas | dispersion",
+    "horizontal": false,
+    "titulo": "Título visible (opcional)",
+    "intro": "Leyenda del paso 0.",
+    "unidad": " €",
+    "decimales": 0,
+    "separadorDecimal": ",",
+    "categorias": ["Café", "Té"],
+    "series": [
+      { "nombre": "T1", "serie": 1, "valores": [215, 140] },
+      { "nombre": "dispersion: puntos", "serie": 2, "puntos": [[1.5, 20, "etiqueta opcional"]] }
+    ],
+    "ejeX": { "titulo": "categoría", "min": 0, "max": 10 },
+    "ejeY": { "titulo": "total", "min": 0, "max": 300 },
+    "valores": false,
+    "visibles": ["series visibles en el paso 0 (por defecto, todas)"],
+    "ancho": "fijo en px (por defecto se adapta al contenedor, 320–720)",
+    "alto": 330,
+    "pasos": [{ "series": ["T1"], "resaltar": ["categorías, o etiquetas de puntos"], "texto": "Leyenda; series se mantiene en los pasos siguientes, resaltar solo en este" }]
+  }
+}

@@ -1,0 +1,13 @@
+<div class="viz" data-viz="traza" aria-label="Traza de precios.reduce(sum, 0)">
+  <script type="application/json">
+  {
+    "intro": "precios.reduce(sum, 0) llama a sum una vez por cada precio.",
+    "flecha": "=",
+    "pasos": [
+      { "etiqueta": "Paso 1", "entrada": [["sum(", ""], ["0", "a"], [", ", ""], ["12.5", "b"], [")", ""]], "salida": "12.5", "nota": "El valor inicial, 0, entra como a; el primer precio entra como b." },
+      { "etiqueta": "Paso 2", "entrada": [["sum(", ""], ["12.5", "a"], [", ", ""], ["4.25", "b"], [")", ""]], "salida": "16.75", "nota": "Lo que devolvió el paso anterior pasa a ser el nuevo a." },
+      { "etiqueta": "Paso 3", "entrada": [["sum(", ""], ["16.75", "a"], [", ", ""], ["3", "b"], [")", ""]], "salida": "19.75", "nota": "No quedan precios: reduce devuelve 19.75." }
+    ]
+  }
+  </script>
+</div>

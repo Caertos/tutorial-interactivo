@@ -1,0 +1,51 @@
+<div class="viz" data-viz="grafo" aria-label="Historial de git durante git rebase main desde la rama feature y el merge posterior">
+  <script type="application/json">
+  {
+    "modo": "git",
+    "intro": "feature salió de B; mientras tanto, main avanzó con C. Estás en feature y ejecutas git rebase main.",
+    "ramas": [{ "nombre": "main", "serie": 1 }, { "nombre": "feature", "serie": 2 }],
+    "commits": [
+      { "id": "A", "rama": "main", "padres": [], "mensaje": "inicio" },
+      { "id": "B", "rama": "main", "padres": ["A"], "mensaje": "login" },
+      { "id": "D", "rama": "feature", "padres": ["B"], "mensaje": "filtros" },
+      { "id": "E", "rama": "feature", "padres": ["D"], "mensaje": "tests" },
+      { "id": "C", "rama": "main", "padres": ["B"], "mensaje": "fix CSS" }
+    ],
+    "refs": { "main": "C", "feature": "E" },
+    "head": "feature",
+    "pasos": [
+      { "head": "C", "resaltar": ["B", "C"], "texto": "git busca el ancestro común de feature y main (B) y deja HEAD separado sobre la punta de main, C." },
+      { "agregar": [{ "id": "D'", "rama": "feature", "padres": ["C"], "mensaje": "filtros", "copiaDe": "D" }], "head": "D'", "resaltar": ["D'"], "texto": "Reaplica el cambio de D encima de C. Es un commit nuevo, D', con otro hash: mismo cambio, distinto padre." },
+      { "agregar": [{ "id": "E'", "rama": "feature", "padres": ["D'"], "mensaje": "tests", "copiaDe": "E" }], "head": "E'", "resaltar": ["E'"], "texto": "Reaplica E encima de D'. Si hubiera un conflicto, el rebase se detendría aquí." },
+      { "refs": { "feature": "E'" }, "head": "feature", "texto": "Al terminar, mueve feature a E' y le devuelve HEAD. D y E ya no son alcanzables desde ninguna rama: solo los recuerda el reflog." },
+      { "head": "main", "texto": "git switch main: HEAD pasa a main, que sigue en C." },
+      { "refs": { "main": "E'" }, "resaltar": ["E'"], "texto": "git merge feature: main es antecesora de feature, así que avanza (fast-forward) hasta E' sin crear un commit de merge." }
+    ]
+  }
+  </script>
+</div>
+<div class="viz" data-viz="grafo" aria-label="Grafo de importaciones entre módulos ES y su orden de evaluación">
+  <script type="application/json">
+  {
+    "intro": "app.js importa router.js y api.js, y ambos importan http.js. ¿En qué orden se evalúan los módulos?",
+    "nodos": [
+      { "id": "app", "etiqueta": "app.js", "serie": 1 },
+      { "id": "router", "etiqueta": "router.js" },
+      { "id": "api", "etiqueta": "api.js" },
+      { "id": "http", "etiqueta": "http.js" },
+      { "id": "cache", "etiqueta": "cache.js" }
+    ],
+    "aristas": [
+      { "desde": "app", "hacia": "router" }, { "desde": "app", "hacia": "api" },
+      { "desde": "router", "hacia": "http" }, { "desde": "api", "hacia": "http" }, { "desde": "api", "hacia": "cache" }
+    ],
+    "pasos": [
+      { "actual": ["http"], "hecho": ["http"], "aristas": [["app", "router"], ["router", "http"]], "texto": "Se sigue el primer import hasta el fondo: http.js no importa nada, así que se evalúa primero." },
+      { "actual": ["router"], "hecho": ["router"], "texto": "Con su dependencia lista, se evalúa router.js." },
+      { "actual": ["cache"], "hecho": ["cache"], "aristas": [["app", "api"], ["api", "cache"]], "texto": "api.js importa http.js (ya evaluado: no se repite) y cache.js, que se evalúa ahora." },
+      { "actual": ["api"], "hecho": ["api"], "texto": "Luego api.js." },
+      { "actual": ["app"], "hecho": ["app"], "texto": "Por último app.js. Node imprime: http.js, router.js, cache.js, api.js, app.js." }
+    ]
+  }
+  </script>
+</div>

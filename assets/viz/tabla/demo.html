@@ -1,0 +1,28 @@
+<div class="viz" data-viz="tabla" aria-label="WHERE edad >= 18 sobre la tabla alumnos">
+  <script type="application/json">
+  {
+    "nombre": "alumnos",
+    "serie": 1,
+    "intro": "SELECT * FROM alumnos WHERE edad >= 18: primero, la tabla tal como está.",
+    "columnas": [
+      { "nombre": "id", "tipo": "INTEGER", "clave": "PK" },
+      { "nombre": "nombre", "tipo": "TEXT" },
+      { "nombre": "edad", "tipo": "INTEGER" },
+      { "nombre": "curso_id", "tipo": "INTEGER", "clave": "FK", "ref": "cursos.id" }
+    ],
+    "filas": [
+      [1, "Ana", 19, 10],
+      [2, "Luis", 17, 20],
+      [3, "Eva", null, 10],
+      [4, "Iván", 22, null],
+      [5, "Sara", 18, 30]
+    ],
+    "pasos": [
+      { "texto": "La condición edad >= 18 solo mira la columna edad.", "resaltarColumna": "edad" },
+      { "texto": "Se evalúa fila por fila: 1 es verdadero, 0 es falso y con edad NULL el resultado también es NULL.", "columnaNueva": { "nombre": "edad >= 18", "tipo": "resultado", "valores": [1, 0, null, 1, 1] } },
+      { "texto": "WHERE solo conserva las filas donde la condición es verdadera: descarta a Luis (0) y a Eva (NULL).", "tachar": [1, 2] },
+      { "texto": "El NULL de curso_id no afecta: la condición no usa esa columna, así que Iván se queda.", "resaltarCeldas": [[3, "curso_id"]] }
+    ]
+  }
+  </script>
+</div>

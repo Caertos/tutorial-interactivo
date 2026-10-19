@@ -1,0 +1,17 @@
+{
+  "name": "antes-despues",
+  "titulo": "Antes y después",
+  "forma": ["comparación", "diferencias", "inmutabilidad", "transformación"],
+  "cuando": "Mostrar qué cambia entre dos estados: un objeto actualizado, un arreglo tras un método, dos versiones de código, una tabla tras un UPDATE. Marca lo añadido, eliminado y cambiado (en código, una línea modificada se marca como cambiada), y si el resultado es la misma referencia o una nueva. Con \"diff\": false compara dos alternativas lado a lado sin marcas.",
+  "cuandoNo": "Más de dos estados o una evolución paso a paso (usa «traza» o «memoria»). Objetos con más de 8 propiedades o anidamiento profundo: recorta. Para ver referencias compartidas con flechas, usa «memoria».",
+  "config": {
+    "tipo": "valor | objeto | lista | codigo | tabla",
+    "modo": "lado | alternar (alternar muestra uno a la vez con botones)",
+    "diff": "true | false. false: comparación neutral de dos alternativas (sin marcas de añadido o eliminado, sin flecha, sin paso de diferencias; títulos por defecto «Opción A» y «Opción B»)",
+    "antes": { "titulo": "usuario", "codigo": "expresión opcional sobre el panel", "valor": "según tipo: primitivo, objeto, arreglo, texto con saltos de línea o { columnas, filas }" },
+    "despues": { "titulo": "nuevo", "valor": {} },
+    "clave": "solo tabla: columna que identifica cada fila (por defecto la primera)",
+    "referencia": { "misma": false, "expresion": "usuario === nuevo", "idAntes": "objeto #1", "idDespues": "objeto #2" },
+    "textos": { "intro": "paso 0", "despues": "paso 1", "diferencias": "paso 2 (por defecto, un resumen calculado; no existe con diff: false)", "referencia": "último paso (solo con referencia)" }
+  }
+}

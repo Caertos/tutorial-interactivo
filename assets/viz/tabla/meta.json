@@ -1,0 +1,25 @@
+{
+  "name": "tabla",
+  "titulo": "Tabla de datos paso a paso",
+  "forma": ["datos tabulares", "filtrado", "columna calculada", "SQL", "dataframe"],
+  "cuando": "Mostrar la forma de una tabla (tipos, claves, NULL) y lo que una operación hace sobre sus filas o columnas: WHERE, una columna calculada, un filtro de pandas.",
+  "cuandoNo": "Combinar dos tablas (usa «join») o recorrer todas las cláusulas de una consulta (usa «orden-sql»). Más de 8 filas o 6 columnas: recorta el ejemplo.",
+  "config": {
+    "nombre": "alumnos",
+    "serie": 1,
+    "intro": "Texto del paso 0 (opcional).",
+    "columnas": [
+      { "nombre": "id", "tipo": "INTEGER", "clave": "PK" },
+      { "nombre": "nombre", "tipo": "TEXT" },
+      { "nombre": "curso_id", "tipo": "INTEGER", "clave": "FK", "ref": "cursos.id" }
+    ],
+    "filas": [[1, "Ana", 10], [2, "Luis", null]],
+    "mostrarConteo": true,
+    "pasos": [
+      { "texto": "Leyenda del paso", "resaltarColumna": "curso_id" },
+      { "texto": "Solo este paso", "resaltarFilas": [0], "resaltarCeldas": [[1, "curso_id"]] },
+      { "texto": "Acumulativo", "tachar": [1], "atenuar": [], "columnaNueva": { "nombre": "x", "tipo": "INTEGER", "valores": [1, 0], "rol": "r" } },
+      { "texto": "Quita tachados y atenuados", "restaurar": true }
+    ]
+  }
+}

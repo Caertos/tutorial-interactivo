@@ -1,0 +1,17 @@
+/* viz: arbol */
+.ar text{font-family:var(--mono)}
+.ar-edge{fill:none; stroke:var(--line); stroke-width:1.8}
+.ar-edge.seen{stroke:var(--muted)}
+.ar-edge.path{stroke:var(--hl); stroke-width:3}
+.ar-box{fill:var(--surface); stroke:var(--line); stroke-width:1.5}
+.ar-node.seen .ar-box{stroke:var(--muted); fill:var(--bg)}
+.ar-node.path .ar-box{stroke:var(--hl); stroke-width:2}
+.ar-node.found .ar-box{stroke:var(--r); fill:var(--r-soft); stroke-width:2.2}
+.ar-node.now .ar-box{fill:var(--hl-soft); stroke:var(--hl); stroke-width:2.5}
+.ar-lbl{font-size:13.5px; fill:var(--ink)}
+.ar-node.now .ar-lbl,.ar-node.found .ar-lbl{font-weight:600}
+.ar-det{font-size:11.5px; fill:var(--muted)}
+.ar-fold{font-family:var(--display); font-size:11.5px; fill:var(--muted)}
+.ar-ord{fill:var(--ink)}
+.ar .ar-ord-t{font-size:11px; font-weight:600; fill:var(--bg)}
+.ar-node.now .ar-ord{fill:var(--hl)}

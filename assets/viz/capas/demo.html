@@ -1,0 +1,58 @@
+<div class="viz" data-viz="capas" aria-label="Recorrido de la petición GET /api/pedidos/42 desde el navegador hasta la base de datos y de vuelta">
+  <script type="application/json">
+  {
+    "intro": "El usuario abre la página de su pedido 42. Avanza para seguir la petición hasta la base de datos y la respuesta de vuelta.",
+    "titulo": "GET /api/pedidos/42: 10 saltos entre 6 capas y la vista final.",
+    "capas": [
+      { "id": "nav", "nombre": "Navegador", "detalle": "fetch()", "color": 1 },
+      { "id": "cdn", "nombre": "CDN", "detalle": "caché compartida" },
+      { "id": "api", "nombre": "API", "detalle": "router HTTP" },
+      { "id": "srv", "nombre": "Servicio", "detalle": "reglas de negocio" },
+      { "id": "orm", "nombre": "ORM", "detalle": "objetos ↔ SQL" },
+      { "id": "db", "nombre": "Base de datos", "detalle": "SQL", "color": 3 }
+    ],
+    "pasos": [
+      { "desde": "nav", "hacia": "cdn", "etiqueta": "GET /api/pedidos/42",
+        "hace": "El navegador envía la petición HTTP con el token del usuario. La primera en recibirla es la CDN.",
+        "payload": { "lang": "http", "codigo": [["GET", "k"], [" /api/pedidos/", ""], ["42", "a"], [" HTTP/1.1\nHost: tienda.ejemplo\nAccept: application/json\n", ""], ["Authorization", "b"], [": Bearer eyJhbGciOi…", ""]] } },
+      { "desde": "cdn", "hacia": "api", "etiqueta": "GET /api/pedidos/42",
+        "hace": "Una caché compartida no reutiliza respuestas para peticiones con Authorization salvo que el origen lo permita, así que la reenvía al servidor.",
+        "payload": { "lang": "http", "codigo": [["GET", "k"], [" /api/pedidos/", ""], ["42", "a"], [" HTTP/1.1\nHost: tienda.ejemplo\n", ""], ["Authorization", "b"], [": Bearer eyJhbGciOi…\nX-Forwarded-For: 203.0.113.8", ""]] } },
+      { "desde": "api", "hacia": "srv", "etiqueta": "obtenerPedido()",
+        "hace": "El router valida el token, extrae el id de la URL y llama al servicio con datos ya tipados: el servicio no sabe nada de HTTP.",
+        "payload": { "lang": "js", "codigo": [["obtenerPedido", "fn"], ["({ id: ", ""], ["42", "a"], [", usuarioId: ", ""], ["7", "b"], [" })", ""]] } },
+      { "desde": "srv", "hacia": "orm", "etiqueta": "Pedido.findOne()",
+        "hace": "El servicio aplica la regla de negocio: cada usuario solo ve sus pedidos. Por eso filtra también por usuarioId.",
+        "payload": { "lang": "js", "codigo": [["Pedido", "fn"], [".findOne({\n  where: { id: ", ""], ["42", "a"], [", usuarioId: ", ""], ["7", "b"], [" },\n  include: [LineaPedido]\n})", ""]] } },
+      { "desde": "orm", "hacia": "db", "etiqueta": "SELECT … JOIN …",
+        "hace": "El ORM traduce la llamada a una sola consulta SQL con JOIN para traer el pedido y sus líneas.",
+        "payload": { "lang": "sql", "codigo": [["SELECT", "k"], [" p.id, p.estado, l.producto,\n       l.cantidad, l.precio\n", ""], ["FROM", "k"], [" pedidos p\n", ""], ["JOIN", "k"], [" lineas_pedido l ", ""], ["ON", "k"], [" l.pedido_id = p.id\n", ""], ["WHERE", "k"], [" p.id = ", ""], ["42", "a"], [" ", ""], ["AND", "k"], [" p.usuario_id = ", ""], ["7", "b"], [";", ""]] } },
+      { "desde": "db", "hacia": "orm", "etiqueta": "2 filas",
+        "hace": "La base de datos devuelve filas planas: el pedido se repite en cada línea porque así funciona un JOIN.",
+        "payload": { "lang": "text", "codigo": "id | estado  | producto         | cantidad | precio\n42 | enviado | Café molido      | 2        | 4.5\n42 | enviado | Taza de cerámica | 1        | 12.5" } },
+      { "desde": "orm", "hacia": "srv", "etiqueta": "Pedido { lineas: […] }",
+        "hace": "El ORM agrupa las filas repetidas en un objeto Pedido con un arreglo de líneas.",
+        "payload": { "lang": "js", "codigo": [["Pedido", "fn"], [" {\n  id: 42, estado: ", ""], ["'enviado'", "s"], [",\n  lineas: [\n    { producto: ", ""], ["'Café molido'", "s"], [", cantidad: 2, precio: 4.5 },\n    { producto: ", ""], ["'Taza de cerámica'", "s"], [", cantidad: 1, precio: 12.5 }\n  ]\n}", ""]] } },
+      { "desde": "srv", "hacia": "api", "etiqueta": "PedidoDTO",
+        "hace": "El servicio calcula el total (2 × 4.5 + 12.5 = 21.5) y entrega un objeto plano, sin métodos del ORM.",
+        "payload": { "lang": "json", "codigo": [["{\n  \"id\": 42,\n  \"estado\": ", ""], ["\"enviado\"", "s"], [",\n  \"lineas\": [\n    { \"producto\": ", ""], ["\"Café molido\"", "s"], [", \"cantidad\": 2, \"precio\": 4.5 },\n    { \"producto\": ", ""], ["\"Taza de cerámica\"", "s"], [", \"cantidad\": 1, \"precio\": 12.5 }\n  ],\n  \"total\": ", ""], ["21.5", "r"], ["\n}", ""]] } },
+      { "desde": "api", "hacia": "cdn", "etiqueta": "200 OK",
+        "hace": "La API serializa el objeto a JSON y responde 200. Cache-Control: private le dice a la CDN que no guarde esta respuesta.",
+        "payload": { "lang": "http", "codigo": [["HTTP/1.1 ", ""], ["200 OK", "r"], ["\nContent-Type: application/json\n", ""], ["Cache-Control: private", "b"], ["\n\n{\"id\":42,\"estado\":\"enviado\",…,\"total\":21.5}", ""]] } },
+      { "desde": "cdn", "hacia": "nav", "etiqueta": "200 OK",
+        "hace": "La CDN reenvía la respuesta sin almacenarla. El navegador recibe el JSON y fetch() resuelve su promesa.",
+        "payload": { "lang": "js", "codigo": [["const", "k"], [" pedido = ", ""], ["await", "k"], [" res.", ""], ["json", "fn"], ["();\npedido.total ", ""], ["// 21.5", "com"]] } }
+    ],
+    "render": {
+      "capa": "nav",
+      "etiqueta": "Lo que ve el usuario",
+      "hace": "El componente pinta el pedido con los datos recibidos. El usuario nunca ve SQL ni JSON: solo este resultado.",
+      "url": "tienda.ejemplo/pedidos/42",
+      "titulo": "Pedido n.º 42",
+      "texto": "Estado: enviado",
+      "items": [{ "texto": "Café molido × 2", "detalle": "9,00 €" }, { "texto": "Taza de cerámica × 1", "detalle": "12,50 €" }],
+      "nota": "Total: 21,50 €"
+    }
+  }
+  </script>
+</div>

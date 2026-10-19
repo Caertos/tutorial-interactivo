@@ -1,0 +1,47 @@
+/* viz: antes-despues */
+.ad-pair{display:grid; grid-template-columns:minmax(0,1fr) auto minmax(0,1fr); gap:.6rem; align-items:start}
+.ad.alt .ad-pair,.ad.alt.neutral .ad-pair{grid-template-columns:minmax(0,1fr)}
+.ad.alt .ad-arrow{display:none}
+.ad.neutral .ad-pair{grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:.8rem}
+.ad-arrow{align-self:center; font-family:var(--mono); color:var(--muted); font-size:1.2rem}
+@media (max-width:560px){ .ad-pair,.ad.neutral .ad-pair{grid-template-columns:minmax(0,1fr)} .ad-arrow{justify-self:center; transform:rotate(90deg)} }
+.ad-toggle{display:flex; gap:.4rem; margin-bottom:.6rem}
+.ad-panel{min-width:0; border:1.5px solid var(--line); border-radius:12px; padding:.6rem .75rem .7rem; background:var(--surface); transition:opacity .35s, border-color .35s}
+.ad-panel.pend{border-style:dashed; background:transparent}
+.ad-panel.pend .ad-body,.ad-panel.pend .ad-id,.ad-panel.pend .ad-expr{visibility:hidden}
+.ad-head{display:flex; align-items:center; justify-content:space-between; gap:.5rem; margin-bottom:.35rem}
+.ad-title{font-weight:600; font-size:.92rem}
+.ad-id{font-family:var(--mono); font-size:.72rem; color:var(--muted); border:1px solid var(--line); border-radius:999px; padding:.05rem .5rem; transition:background .35s, color .35s, border-color .35s}
+.ad-id.on{border-color:var(--hl); background:var(--hl-soft); color:var(--ink)}
+.ad-expr{font-family:var(--mono); font-variant-ligatures:none; font-size:.78rem; color:var(--muted); margin:0 0 .4rem; max-width:none; overflow-wrap:anywhere}
+.ad-body{font-family:var(--mono); font-variant-ligatures:none; font-size:.86rem; line-height:1.6; min-width:max-content}
+.ad-body.ad-tabla{min-width:0; font-family:var(--display)}
+.ad-row{position:relative; padding:0 .4rem 0 1.3rem; border-radius:5px; white-space:pre}
+.ad-objeto .ad-row:not(.ad-brace){padding-left:2.2rem}
+.ad-brace{color:var(--muted)}
+.ad-key{color:var(--muted)}
+.ad-big{font-size:1.6rem; font-weight:600}
+.ad-valor .ad-row{padding-left:1.3rem}
+.ad-code{padding-left:1.3rem}
+.ad-list{list-style:none; margin:0; padding:0 0 .2rem; display:flex; gap:.35rem}
+.ad-cell{position:relative; display:grid; justify-items:center; border:1.5px solid var(--line); border-radius:8px; padding:.15rem .55rem .25rem; min-width:2.6rem}
+.ad-idx{font-size:.65rem; color:var(--muted)}
+/* marks appear only after the "diferencias" step */
+.ad-panel.marked [data-mark]::before{position:absolute; left:.35rem; top:0; font-weight:600}
+.ad-panel.marked .ad-objeto [data-mark]::before{left:.9rem}
+.ad-panel.marked [data-mark="add"]{background:var(--c-soft)} .ad-panel.marked [data-mark="add"]::before{content:"+"; color:var(--c)}
+.ad-panel.marked [data-mark="del"]{background:var(--d-soft); text-decoration:line-through; text-decoration-color:var(--d)} .ad-panel.marked [data-mark="del"]::before{content:"−"; color:var(--d)}
+.ad-panel.marked [data-mark="chg"]{background:var(--hl-soft)} .ad-panel.marked [data-mark="chg"]::before{content:"~"; color:var(--ink)}
+.ad-panel.marked .ad-cell[data-mark]::before{top:-.55rem; left:.2rem; font-size:.8rem}
+.ad-panel.marked .ad-cell[data-mark="add"]{border-color:var(--c)} .ad-panel.marked .ad-cell[data-mark="del"]{border-color:var(--d)}
+.ad-panel.marked .ad-cell[data-mark=""],.ad-panel.marked .ad-cell:not([data-mark]){background:none}
+.ad-panel.marked .ad-cell[data-mark=""]::before{content:none}
+.vt tr.ad-t-add td{background:var(--c-soft)}
+.vt tr.ad-t-del td{background:var(--d-soft); text-decoration:line-through; text-decoration-color:var(--d)}
+.ad-legend{display:flex; flex-wrap:wrap; gap:.4rem .9rem; font-size:.78rem; color:var(--muted); margin:.5rem 0 0; visibility:hidden}
+.ad-legend.on{visibility:visible}
+.ad-legend [data-mark]{padding:0 .35rem; border-radius:4px; font-family:var(--mono)}
+.ad-legend [data-mark="add"]{background:var(--c-soft)} .ad-legend [data-mark="del"]{background:var(--d-soft)} .ad-legend [data-mark="chg"]{background:var(--hl-soft)}
+.ad-cmp{display:flex; flex-wrap:wrap; align-items:center; gap:.2rem; margin:.4rem 0 0; min-height:1.6em; font-size:.9rem; max-width:none}
+.ad-cmp code{font-size:.85rem}
+.ad-cmp-t{color:var(--muted)}

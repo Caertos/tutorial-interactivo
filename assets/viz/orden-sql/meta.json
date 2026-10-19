@@ -1,0 +1,16 @@
+{
+  "name": "orden-sql",
+  "titulo": "Orden lógico de una consulta SQL",
+  "forma": ["SQL", "pipeline", "orden de ejecución", "agregación"],
+  "cuando": "Explicar por qué una consulta se escribe en un orden y se ejecuta en otro: alias que no existen en WHERE, WHERE frente a HAVING, LIMIT después de ORDER BY.",
+  "cuandoNo": "Consultas con una sola cláusula (usa «tabla») o planes físicos del motor (índices, EXPLAIN): esto es el orden lógico, no el plan real.",
+  "config": {
+    "intro": "Texto del paso 0.",
+    "consulta": [["SELECT nombre", "select"], ["\nFROM alumnos", "from"], ["\nWHERE edad >= 18", "where"], [";", ""]],
+    "etapas": [
+      { "id": "from", "nombre": "FROM", "texto": "Leyenda de la etapa", "tabla": { "titulo": "alumnos", "serie": 1, "columnas": ["nombre", "edad"], "filas": [["Ana", 19], ["Luis", 17]] } },
+      { "id": "where", "nombre": "WHERE", "texto": "…", "tabla": { "titulo": "tras WHERE", "columnas": ["nombre", "edad"], "filas": [["Ana", 19], ["Luis", 17]], "tachar": [1], "resaltarColumna": "edad" } },
+      { "id": "select", "nombre": "SELECT", "texto": "…", "tabla": { "titulo": "resultado", "serie": "r", "columnas": ["nombre"], "filas": [["Ana"]], "grupos": [0] } }
+    ]
+  }
+}

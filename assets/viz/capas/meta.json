@@ -1,0 +1,21 @@
+{
+  "name": "capas",
+  "titulo": "Flujo de datos entre capas",
+  "forma": ["flujo entre capas", "petición-respuesta", "transformación", "arquitectura"],
+  "cuando": "Seguir un dato por las capas de un sistema (navegador, CDN, API, servicio, ORM, base de datos) y de vuelta: qué hace cada capa y qué forma tienen los datos al salir de ella. Cierra con lo que ve el usuario.",
+  "cuandoNo": "Varios actores que se llaman entre sí en cualquier orden o con llamadas asíncronas cruzadas (usa «secuencia»). Más de 8 capas o 12 saltos: agrupa capas. Si solo importa el orden temporal, usa «linea-tiempo».",
+  "config": {
+    "orientacion": "vertical | horizontal (por defecto vertical; horizontal se desplaza dentro del módulo en el móvil)",
+    "intro": "Leyenda del paso 0.",
+    "titulo": "Texto del panel en el paso 0 (opcional).",
+    "capas": [
+      { "id": "nav", "nombre": "Navegador", "detalle": "fetch()", "color": 1 },
+      { "id": "api", "nombre": "API", "detalle": "router HTTP" }
+    ],
+    "pasos": [
+      { "desde": "nav", "hacia": "api", "etiqueta": "GET /api/pedidos/42 (texto o segmentos)", "hace": "Leyenda: qué hace la capa destino, en una frase. Sin payload (es opcional), el panel muestra este texto.",
+        "payload": { "lang": "json | sql | http | html | js | text", "titulo": "Forma de los datos (opcional)", "codigo": "texto o segmentos [[\"SELECT\", \"k\"], [\" id\", \"\"], [\"42\", \"a\"]]; roles: a b c d r e k s com fn hl 1-6" } }
+    ],
+    "render": { "capa": "nav", "etiqueta": "Lo que ve el usuario", "hace": "Leyenda del paso final", "url": "tienda.ejemplo/pedidos/42", "titulo": "Pedido n.º 42", "texto": "Estado: enviado", "items": ["texto", { "texto": "Café × 2", "detalle": "9,00 €" }], "nota": "Total: 21,50 €" }
+  }
+}

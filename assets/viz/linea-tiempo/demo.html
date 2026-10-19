@@ -1,0 +1,48 @@
+<div class="viz" data-viz="linea-tiempo" aria-label="Bucle de eventos: pila de llamadas, microtareas y tareas al ejecutar un script con setTimeout y una promesa">
+  <script type="application/json">
+  {
+    "modo": "cola",
+    "intro": "¿En qué orden se escriben A, B, C y D? El script principal entra en la pila de llamadas.",
+    "codigo": { "lang": "js", "titulo": "script.js", "codigo": "console.log('A');\nsetTimeout(() => console.log('B'), 0);\nPromise.resolve().then(() => console.log('C'));\nconsole.log('D');" },
+    "carriles": [
+      { "id": "pila", "nombre": "Pila de llamadas", "tipo": "pila", "serie": 1 },
+      { "id": "micro", "nombre": "Microtareas", "tipo": "cola", "serie": 4 },
+      { "id": "tareas", "nombre": "Tareas (macro)", "tipo": "cola", "serie": 2 },
+      { "id": "salida", "nombre": "Consola", "tipo": "salida" }
+    ],
+    "inicial": { "pila": ["script principal"] },
+    "pasos": [
+      { "linea": 1, "contenido": { "pila": ["script principal", "console.log('A')"] }, "imprime": "A", "texto": "console.log('A') entra en la pila, escribe A y sale." },
+      { "linea": 2, "contenido": { "pila": ["script principal", "setTimeout(…)"], "tareas": ["() => console.log('B')"] }, "texto": "setTimeout no espera: delega el temporizador y sigue. Al vencer (0 ms), su callback queda en la cola de tareas." },
+      { "linea": 3, "contenido": { "pila": ["script principal", ".then(…)"], "micro": ["() => console.log('C')"] }, "texto": "La promesa ya está resuelta, así que .then encola su callback como microtarea." },
+      { "linea": 4, "contenido": { "pila": ["script principal", "console.log('D')"] }, "imprime": "D", "texto": "D se escribe antes que C y B: los callbacks esperan a que la pila quede vacía." },
+      { "contenido": { "pila": [] }, "activo": "pila", "texto": "El script termina y la pila queda vacía. Ahora el bucle de eventos vacía primero todas las microtareas." },
+      { "contenido": { "pila": ["() => console.log('C')"], "micro": [] }, "imprime": "C", "texto": "La microtarea pasa a la pila y escribe C." },
+      { "contenido": { "pila": ["() => console.log('B')"], "tareas": [] }, "imprime": "B", "texto": "Sin microtareas pendientes, el bucle toma la siguiente tarea: escribe B. Orden final: A, D, C, B, lo mismo que imprime Node." }
+    ]
+  }
+  </script>
+</div>
+<div class="viz" data-viz="linea-tiempo" aria-label="Línea de tiempo de render, commit y efectos de un componente React con useEffect">
+  <script type="application/json">
+  {
+    "intro": "Un componente con useEffect que depende de count, en producción: se monta, count cambia de 0 a 1 y se desmonta.",
+    "carriles": [
+      { "id": "render", "nombre": "Render", "serie": 1 },
+      { "id": "commit", "nombre": "Commit (DOM)", "serie": 2 },
+      { "id": "efectos", "nombre": "Efectos", "serie": 3 }
+    ],
+    "eje": { "inicio": 0, "fin": 13, "marcas": [{ "t": 0.5, "texto": "montaje" }, { "t": 5.5, "texto": "count: 0 → 1" }, { "t": 11, "texto": "desmontaje" }] },
+    "eventos": [
+      { "carril": "render", "t": 0.5, "fin": 2, "etiqueta": "Contador()", "nota": "Montaje: React llama a la función con count = 0. Renderizar solo calcula el JSX; todavía no toca el DOM." },
+      { "carril": "commit", "t": 2.2, "fin": 3.2, "etiqueta": "DOM", "nota": "Commit: React aplica los cambios al DOM real." },
+      { "carril": "efectos", "t": 3.6, "etiqueta": "efecto #1", "nota": "Después del commit se ejecuta el efecto, que ve count = 0." },
+      { "carril": "render", "t": 5.5, "fin": 7, "etiqueta": "Contador()", "nota": "count pasa a 1: React vuelve a llamar a la función del componente." },
+      { "carril": "commit", "t": 7.2, "fin": 8.2, "etiqueta": "DOM", "nota": "Commit del nuevo resultado." },
+      { "carril": "efectos", "t": 8.6, "etiqueta": "limpieza #1", "nota": "Antes del efecto nuevo, React ejecuta la limpieza del anterior, que todavía ve count = 0." },
+      { "carril": "efectos", "t": 10.3, "etiqueta": "efecto #2", "nota": "Después se ejecuta el efecto nuevo, que ve count = 1." },
+      { "carril": "efectos", "t": 12, "etiqueta": "limpieza #2", "nota": "Al desmontar, React ejecuta la última limpieza. En desarrollo, el modo estricto añade un montaje y un desmontaje extra." }
+    ]
+  }
+  </script>
+</div>

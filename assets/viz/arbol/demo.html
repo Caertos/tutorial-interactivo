@@ -1,0 +1,27 @@
+<div class="viz" data-viz="arbol" aria-label="Árbol DOM recorrido por document.querySelector('.activo')">
+  <script type="application/json">
+  {
+    "intro": "document.querySelector('.activo') recorre el DOM en orden de documento: en profundidad y en preorden. Avanza para verlo.",
+    "raiz": { "id": "body", "etiqueta": "body", "hijos": [
+      { "id": "header", "etiqueta": "header", "hijos": [{ "id": "h1", "etiqueta": "h1" }] },
+      { "id": "main", "etiqueta": "main", "hijos": [
+        { "id": "ul", "etiqueta": "ul.menu", "hijos": [
+          { "id": "li1", "etiqueta": "li", "detalle": "Inicio" },
+          { "id": "li2", "etiqueta": "li.activo", "detalle": "Ofertas" }
+        ] },
+        { "id": "p", "etiqueta": "p.activo", "detalle": "Envío gratis" }
+      ] }
+    ] },
+    "pasos": [
+      { "actual": "body", "texto": "Empieza por body: no tiene la clase activo." },
+      { "actual": "header", "texto": "Baja al primer hijo, header. Tampoco coincide." },
+      { "actual": "h1", "texto": "Sigue bajando antes de pasar al siguiente hermano: h1." },
+      { "actual": "main", "texto": "header no tiene más descendientes, así que pasa a su hermano main." },
+      { "actual": "ul", "texto": "Primer hijo de main: ul.menu." },
+      { "actual": "li1", "texto": "El primer li no tiene la clase activo." },
+      { "actual": "li2", "encontrado": ["li2"], "texto": "li.activo coincide: querySelector devuelve este elemento y deja de buscar." },
+      { "camino": ["body", "main", "ul", "li2"], "encontrado": ["li2"], "texto": "p.activo también coincide, pero nunca se visita: querySelectorAll sí lo incluiría." }
+    ]
+  }
+  </script>
+</div>

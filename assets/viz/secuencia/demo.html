@@ -1,0 +1,22 @@
+<div class="viz" data-viz="secuencia" aria-label="Diagrama de secuencia de un inicio de sesión entre navegador, API, base de datos y cola de eventos">
+  <script type="application/json">
+  {
+    "intro": "Un inicio de sesión: cuatro actores, siete mensajes. Avanza para verlos en orden.",
+    "actores": [
+      { "id": "nav", "nombre": "Navegador", "serie": 1 },
+      { "id": "api", "nombre": "API" },
+      { "id": "db", "nombre": "Base de datos", "serie": 3 },
+      { "id": "cola", "nombre": "Cola" }
+    ],
+    "mensajes": [
+      { "desde": "nav", "hacia": "api", "texto": "POST /login", "tipo": "sync", "explica": "El navegador envía usuario y contraseña y espera la respuesta: es una llamada síncrona." },
+      { "desde": "api", "hacia": "db", "texto": "SELECT hash", "tipo": "sync", "explica": "La API busca al usuario. La base de datos guarda el hash de la contraseña, nunca la contraseña." },
+      { "desde": "db", "hacia": "api", "texto": "1 fila", "tipo": "retorno", "explica": "La base de datos devuelve la fila; su barra de actividad termina." },
+      { "desde": "api", "hacia": "api", "texto": "bcrypt.compare()", "tipo": "sync", "explica": "La API se llama a sí misma: compara la contraseña recibida con el hash guardado." },
+      { "nota": "no se descifra: se recalcula el hash con la misma sal", "sobre": ["api"], "explica": "bcrypt no descifra nada: vuelve a calcular el hash con la sal guardada y compara los resultados." },
+      { "desde": "api", "hacia": "cola", "texto": "evento login", "tipo": "async", "explica": "Publicar el evento es asíncrono (flecha discontinua): la API no espera a que nadie lo procese." },
+      { "desde": "api", "hacia": "nav", "texto": "200 + cookie", "tipo": "retorno", "explica": "La API responde 200 con la cookie de sesión. La llamada del paso 1 termina aquí." }
+    ]
+  }
+  </script>
+</div>

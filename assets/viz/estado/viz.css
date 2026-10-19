@@ -1,0 +1,23 @@
+/* viz: estado */
+.es text{font-family:var(--mono)}
+.es-start{fill:var(--ink)}
+.es-edge{fill:none; stroke:var(--muted); stroke-width:1.5}
+.es-edge.took{stroke:var(--ink)}
+.es-edge.now{stroke:var(--hl); stroke-width:2.6}
+.es-lbg{fill:var(--bg)}
+.es-lbg.now{fill:var(--hl-soft)}
+.es-ev{font-size:12px; fill:var(--muted)}
+.es-ev.now{fill:var(--ink); font-weight:600}
+.es-box{fill:var(--surface); stroke:var(--line); stroke-width:1.8}
+.es-ring{fill:none; stroke:var(--line); stroke-width:1.2}
+.es-st.final .es-box,.es-st.final .es-ring{stroke:var(--r)}
+.es-st.error .es-box,.es-st.error .es-ring{stroke:var(--err)}
+.es-st.now .es-box{fill:var(--hl-soft); stroke:var(--hl); stroke-width:3}
+.es-st.now.final .es-box{fill:var(--r-soft)}
+.es-st.now.error .es-box{fill:var(--err-soft)}
+.es-name{font-size:13.5px; fill:var(--ink)}
+.es-st.now .es-name{font-weight:600}
+.es-det{font-family:var(--display) !important; font-size:11.5px; fill:var(--muted)}
+.es-st.ignored .es-box{stroke-dasharray:6 4}
+.es-note{text-align:center; font-size:.85rem; color:var(--muted); margin:.3rem auto 0; min-height:1.3em; max-width:none}
+.es-tok{fill:var(--hl); stroke:var(--surface); stroke-width:2.5}

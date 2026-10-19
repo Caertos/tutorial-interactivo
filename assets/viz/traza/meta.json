@@ -1,0 +1,14 @@
+{
+  "name": "traza",
+  "titulo": "Traza de ejecución",
+  "forma": ["iteración", "secuencia", "acumulación"],
+  "cuando": "Iteraciones, reduce, recursión corta, ciclos de render, peticiones y respuestas: cualquier proceso que se entiende paso a paso.",
+  "cuandoNo": "Más de 8 pasos (resume o agrupa), o cuando lo importante es la forma de los datos y no la secuencia (usa «tabla»).",
+  "config": {
+    "intro": "reduce llama a sum una vez por elemento.",
+    "flecha": "=",
+    "pasos": [
+      { "etiqueta": "Paso 1", "entrada": [["sum(", ""], ["0", "a"], [", ", ""], ["12.5", "b"], [")", ""]], "salida": "12.5", "nota": "El acumulado empieza en 0 y entra como a." }
+    ]
+  }
+}

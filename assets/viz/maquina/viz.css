@@ -1,0 +1,23 @@
+/* viz: maquina */
+.maq{display:grid; justify-items:center; margin:1.2rem auto 1rem; max-width:420px}
+.maq-inputs{display:flex; gap:clamp(1rem,8vw,4rem); height:70px; align-items:flex-start; justify-content:center; flex-wrap:nowrap}
+.maq.one .maq-inputs{gap:0}
+.maq .ball.in{font-size:clamp(1.05rem,4vw,1.4rem)}
+.maq-box{width:min(320px,80vw); border:3px solid var(--ink); border-radius:20px; padding:1.1rem; text-align:center; background:var(--surface); position:relative}
+.maq-name{font-family:var(--mono); font-size:1.6rem; font-weight:600; overflow-wrap:anywhere}
+.maq-op{font-family:var(--mono); color:var(--muted); overflow-wrap:anywhere}
+.maq-chute{width:3px; height:34px; background:var(--ink)}
+.maq-out{height:70px; display:grid; place-items:center}
+.maq .ball.out{opacity:0; transform:translateY(-30px) scale(.6)}
+.maq.run .ball.in{animation:maqDrop 1s cubic-bezier(.5,0,.75,0) forwards; animation-delay:calc(.3s + var(--k) * .2s)}
+.maq.run .maq-box{animation:maqWork .6s ease calc(1.1s + var(--n) * .2s) 2}
+.maq.run .ball.out{animation:maqEmerge .6s cubic-bezier(.3,1.4,.5,1) forwards; animation-delay:calc(2.2s + var(--n) * .2s)}
+@keyframes maqDrop{to{transform:translate(var(--dx,0),var(--dy,90px)) scale(.5); opacity:0}}
+@keyframes maqWork{50%{transform:scale(1.04); box-shadow:0 0 0 8px var(--r-soft)}}
+@keyframes maqEmerge{to{opacity:1; transform:none}}
+.maq-pie{text-align:center; margin:.4rem auto 0}
+/* reduced motion: static final diagram, inputs stay visible */
+@media (prefers-reduced-motion: reduce){
+  .maq.run .ball.in,.maq.run .maq-box{animation:none}
+  .maq .ball.out,.maq.run .ball.out{animation:none; opacity:1; transform:none}
+}

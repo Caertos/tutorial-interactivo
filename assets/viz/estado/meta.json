@@ -1,0 +1,15 @@
+{
+  "name": "estado",
+  "titulo": "Máquina de estados",
+  "forma": ["estados", "eventos", "ciclo de vida", "protocolo"],
+  "cuando": "Algo que pasa por estados según eventos: una promesa, el ciclo de vida de un pedido, una conexión TCP, un formulario, una petición con reintentos. Muestra qué eventos tienen efecto y cuáles se ignoran.",
+  "cuandoNo": "Un orden de pasos sin eventos ni alternativas (usa «traza»). Más de 7 estados: divide en submáquinas. Dependencias entre tareas (usa «grafo»).",
+  "config": {
+    "intro": "Leyenda del paso 0.",
+    "direccion": "derecha | abajo",
+    "inicial": "id (por defecto, el de tipo inicial o el primero)",
+    "estados": [{ "id": "pending", "nombre": "pending", "tipo": "inicial | final | error", "detalle": "segunda línea opcional" }],
+    "transiciones": [{ "desde": "pending", "hacia": "fulfilled", "evento": "resolve(v)" }],
+    "pasos": [{ "evento": "resolve(v)", "hacia": "opcional, si hay dos transiciones con el mismo evento", "texto": "Leyenda (por defecto se genera)" }]
+  }
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<!--
+  ESQUELETO DE LA SKILL tutorial-interactivo
+  1. Copia este archivo y escribe el contenido de cada <section class="slide">.
+  2. Para una visualización, añade <div class="viz" data-viz="NOMBRE"> con su
+     configuración en un <script type="application/json"> hijo (catálogo y contrato:
+     assets/viz/README.md y assets/biblioteca.html).
+  3. Compila: python3 scripts/build.py mi-tutorial.html -o salida.html
+     El build sustituye los dos marcadores ESTILOS y SCRIPTS (comentarios con @@)
+     por el núcleo y solo los módulos usados. No los borres.
+  4. Valida: python3 scripts/validate.py salida.html --screenshots DIR
+-->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cómo usar sum de example</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<!-- @@ESTILOS@@ -->
+</head>
+<body class="deck">
+
+<header class="top">
+  <div class="doc">Documentación de <b>example</b></div>
+  <div class="top-end">
+    <div class="counter" aria-live="polite"><span id="cur">1</span> / <span id="tot">3</span></div>
+    <button class="themebtn" type="button" data-theme-toggle>Tema oscuro</button>
+  </div>
+  <div class="progress"><i id="bar"></i></div>
+</header>
+
+<main class="stage" id="stage">
+
+  <!-- Portada: los hijos de .sig se escriben letra por letra; cada span conserva su clase de rol -->
+  <section class="slide center" aria-label="Portada">
+    <div class="wrap">
+      <p class="muted">Guía de la función</p>
+      <h1 class="sig" aria-label="sum(a, b)"><span>sum(</span><span class="pa">a</span><span>, </span><span class="pb">b</span><span>)</span></h1>
+      <p class="lead">Suma dos números y te devuelve el resultado.</p>
+      <p class="hint">Avanza con <kbd>→</kbd> o <kbd>Espacio</kbd>, desliza en el móvil o toca «Siguiente».</p>
+    </div>
+  </section>
+
+  <!-- Diapositiva con visualización: los pasos de la viz se recorren con «Siguiente», junto a los .frag -->
+  <section class="slide" aria-label="Qué hace">
+    <div class="wrap">
+      <h2>Qué hace</h2>
+      <p class="lead">Recibe <span class="tag a">a</span> y <span class="tag b">b</span>, los suma y entrega un número nuevo.</p>
+      <div class="viz" data-viz="maquina" aria-label="sum recibe 4 y 2.5 y devuelve 6.5">
+        <script type="application/json">
+        {
+          "nombre": "sum",
+          "operacion": [["a", "a"], [" + ", ""], ["b", "b"]],
+          "entradas": [{ "valor": "4", "rol": "a" }, { "valor": "2.5", "rol": "b" }],
+          "salida": { "valor": "6.5", "rol": "r" },
+          "llamada": [["sum(", ""], ["4", "a"], [", ", ""], ["2.5", "b"], [")", ""]]
+        }
+        </script>
+      </div>
+      <p class="frag muted">Los valores de entrada no cambian: <code>sum</code> crea un número nuevo.</p>
+    </div>
+  </section>
+
+  <!-- Resumen -->
+  <section class="slide" aria-label="Resumen">
+    <div class="wrap">
+      <h2>En resumen</h2>
+      <div class="sheet">
+        <section><h3>Firma</h3><p><code>sum(a, b)</code></p></section>
+        <section class="a"><h3><span class="pa mono">a</span>: number</h3><p>Primer sumando. Obligatorio.</p></section>
+        <section class="b"><h3><span class="pb mono">b</span>: number</h3><p>Segundo sumando. Obligatorio.</p></section>
+        <section class="r"><h3>Devuelve: <span class="pr mono">number</span></h3><p>La suma de a y b.</p></section>
+      </div>
+      <p style="margin-top:1.4rem"><button class="btn" type="button" data-restart>Volver al inicio</button></p>
+    </div>
+  </section>
+
+</main>
+
+<nav class="nav" aria-label="Navegación de diapositivas">
+  <button class="navbtn ghost" id="prev" type="button">Anterior</button>
+  <div class="dots" id="dots"></div>
+  <button class="navbtn" id="next" type="button">Siguiente</button>
+</nav>
+
+<!-- @@SCRIPTS@@ -->
+<script>
+/* Lógica propia del tutorial (por ejemplo, un playground). Ejemplo: assets/core/ejemplos/playground-sum.js */
+</script>
+</body>
+</html>

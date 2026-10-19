@@ -1,0 +1,15 @@
+{
+  "name": "maquina",
+  "titulo": "Máquina de entrada y salida",
+  "forma": ["transformación", "entrada-salida", "función pura"],
+  "cuando": "Una función que recibe de 1 a 4 valores y devuelve uno nuevo: el momento protagonista de «qué hace».",
+  "cuandoNo": "Colecciones o procesos con varios pasos (usa «traza»), efectos secundarios o resultados que dependen del estado.",
+  "config": {
+    "nombre": "sum",
+    "operacion": [["a", "a"], [" + ", ""], ["b", "b"]],
+    "entradas": [{ "valor": "4", "rol": "a" }, { "valor": "2.5", "rol": "b" }],
+    "salida": { "valor": "6.5", "rol": "r" },
+    "llamada": [["sum(", ""], ["4", "a"], [", ", ""], ["2.5", "b"], [")", ""]],
+    "verbo": "devuelve"
+  }
+}

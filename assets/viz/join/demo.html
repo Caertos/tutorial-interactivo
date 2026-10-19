@@ -1,0 +1,18 @@
+<div class="viz" data-viz="join" aria-label="JOIN entre alumnos y horarios por la columna curso">
+  <script type="application/json">
+  {
+    "izquierda": {
+      "nombre": "alumnos", "serie": 1, "clave": "curso", "etiqueta": "nombre",
+      "columnas": [{ "nombre": "id", "tipo": "INTEGER", "clave": "PK" }, { "nombre": "nombre", "tipo": "TEXT" }, { "nombre": "curso", "tipo": "TEXT" }],
+      "filas": [[1, "Ana", "Mate"], [2, "Luis", "Arte"], [3, "Eva", null], [4, "Iván", "Mate"], [5, "Sara", "Física"]]
+    },
+    "derecha": {
+      "nombre": "horarios", "serie": 2, "clave": "curso", "etiqueta": "dia",
+      "columnas": [{ "nombre": "curso", "tipo": "TEXT" }, { "nombre": "dia", "tipo": "TEXT" }],
+      "filas": [["Mate", "lunes"], ["Mate", "jueves"], ["Arte", "martes"], ["Música", "viernes"]]
+    },
+    "tipo": "INNER",
+    "tipos": ["INNER", "LEFT", "RIGHT", "FULL", "CROSS"]
+  }
+  </script>
+</div>

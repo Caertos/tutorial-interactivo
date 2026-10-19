@@ -1,0 +1,12 @@
+<!-- {"titulo": "Tabla de casos", "cuando": "Qué evitar: llamadas incorrectas, lo que devuelven (en rojo) y por qué."} -->
+<div class="tablewrap">
+<table class="cases">
+  <thead><tr><th>Llamada</th><th>Devuelve</th><th>Por qué</th></tr></thead>
+  <tbody>
+    <tr><td>sum("2", 3)</td><td><span class="tag e">"23"</span></td><td>Con un texto, <code>+</code> pega en vez de sumar.</td></tr>
+    <tr><td>sum(true, 1)</td><td><span class="tag e">2</span></td><td><code>true</code> se convierte en 1 sin avisar.</td></tr>
+    <tr><td>sum(null, 4)</td><td><span class="tag e">4</span></td><td><code>null</code> se convierte en 0.</td></tr>
+    <tr><td>sum(5)</td><td><span class="tag e">NaN</span></td><td>Falta <span class="pb mono">b</span>, así que vale <code>undefined</code>.</td></tr>
+  </tbody>
+</table>
+</div>

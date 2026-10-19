@@ -1,0 +1,16 @@
+<div class="viz" data-viz="antes-despues" aria-label="Actualización inmutable de un objeto con el operador spread">
+  <script type="application/json">
+  {
+    "tipo": "objeto",
+    "antes": { "titulo": "usuario", "valor": { "nombre": "Ana", "ciudad": "Quito", "tags": ["admin"] } },
+    "despues": { "titulo": "nuevo", "codigo": "const nuevo = { ...usuario, ciudad: 'Lima', activo: true };", "valor": { "nombre": "Ana", "ciudad": "Lima", "tags": ["admin"], "activo": true } },
+    "referencia": { "misma": false, "expresion": "usuario === nuevo", "idAntes": "objeto #1", "idDespues": "objeto #2" },
+    "textos": {
+      "intro": "Así está el estado antes de actualizarlo.",
+      "despues": "El spread copia las propiedades de usuario en un objeto nuevo y luego sobrescribe ciudad y añade activo.",
+      "diferencias": "Cambia ciudad y se añade activo. tags no cambia: la copia es superficial y los dos objetos comparten el mismo arreglo.",
+      "referencia": "usuario === nuevo es false: es otro objeto, y React detecta el cambio. En cambio, usuario.tags === nuevo.tags es true."
+    }
+  }
+  </script>
+</div>

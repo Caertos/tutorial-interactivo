@@ -1,0 +1,28 @@
+/* viz: grafico */
+.gr-title{font-weight:600; margin:0 0 .3rem; max-width:none}
+.gr-legend{list-style:none; display:flex; flex-wrap:wrap; gap:.3rem 1rem; margin:0 0 .4rem; padding:0; font-size:.85rem; color:var(--ink)}
+.gr-legend li{display:flex; align-items:center; gap:.4rem; transition:opacity .3s}
+.gr-legend li.off{opacity:.4}
+.gr-sw{width:.8rem; height:.8rem; border-radius:3px; flex:none}
+.gr-stage{position:relative}
+.gr text{font-family:var(--display)}
+.gr-grid{stroke:var(--line); stroke-width:1}
+.gr-grid.zero{stroke:var(--muted); stroke-width:1.3}
+.gr-tick{font-size:12px; fill:var(--muted); font-family:var(--mono) !important}
+.gr-cat{font-size:12.5px; fill:var(--ink)}
+.gr-cat.on{font-weight:600}
+.gr-axt{font-size:12px; fill:var(--muted)}
+.gr-bar{transform-box:fill-box; transform-origin:bottom left; transition:opacity .3s}
+.gr-bar.dim,.gr-dot.dim{opacity:.3}
+.gr-val{font-size:12px; font-weight:600; fill:var(--ink); font-family:var(--mono) !important}
+.gr-line{fill:none; stroke-width:2; stroke-linejoin:round; stroke-linecap:round}
+.gr-pt{stroke:var(--surface); stroke-width:2}
+.gr-dot{stroke:var(--surface); stroke-width:2}
+.gr-dl{font-size:12px; fill:var(--ink)}
+.gr-hit{fill:transparent; outline:none; cursor:default}
+.gr-hit:focus-visible{stroke:var(--a); stroke-width:2; fill:var(--a-soft); fill-opacity:.25}
+.gr-tip{position:absolute; transform:translate(-50%, calc(-100% - 8px)); pointer-events:none; background:var(--ink); color:var(--bg);
+  font-size:.8rem; padding:.25rem .55rem; border-radius:6px; white-space:nowrap; z-index:3}
+.gr-data{margin-top:.4rem; font-size:.85rem}
+.gr-data summary{cursor:pointer; color:var(--muted)}
+.gr-data .viz-scroll{margin-top:.4rem}

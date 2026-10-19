@@ -1,0 +1,22 @@
+<div class="viz" data-viz="grafico" aria-label="Ventas por categoría y trimestre: resultado de GROUP BY categoria, trimestre">
+  <script type="application/json">
+  {
+    "tipo": "barras",
+    "titulo": "SUM(importe) por categoría y trimestre",
+    "intro": "Resultado de GROUP BY categoria, trimestre. Primero, T1: cada barra es SUM(importe) de las filas de esa categoría con trimestre = 'T1'.",
+    "unidad": " €",
+    "categorias": ["Café", "Filtros", "Tazas", "Té"],
+    "series": [
+      { "nombre": "T1", "serie": 1, "valores": [215, 55, 150, 140] },
+      { "nombre": "T2", "serie": 2, "valores": [270, 45, 210, 55] }
+    ],
+    "ejeY": { "titulo": "total" },
+    "visibles": ["T1"],
+    "pasos": [
+      { "series": ["T1", "T2"], "texto": "Se añaden los grupos de T2, al lado de los de T1 para comparar cada categoría." },
+      { "resaltar": ["Café", "Tazas"], "texto": "Café y Tazas crecen de T1 a T2." },
+      { "resaltar": ["Té"], "texto": "Té cae de 140 € a 55 €: es el mayor descenso." }
+    ]
+  }
+  </script>
+</div>

@@ -1,0 +1,31 @@
+/* viz: cuadricula */
+.cu-title{font-weight:600; margin:0 0 .4rem; max-width:none}
+.cu-grid{display:flex; gap:4px; padding:.2rem 0 .3rem; width:max-content; margin:0 auto}
+.cu-grid.d2{display:grid; grid-template-columns:auto repeat(var(--cols), 2.7rem); gap:4px}
+.cu-cell{display:grid; justify-items:center; gap:.15rem; position:relative}
+.cu-ix{font-family:var(--mono); font-size:.7rem; color:var(--muted); text-align:center}
+.cu-ix.row{align-self:center; padding-right:.3rem}
+.cu-box{position:relative; display:grid; place-items:center; width:2.7rem; height:2.7rem; border:1.5px solid var(--line); border-radius:8px;
+  background:var(--surface); font-family:var(--mono); font-variant-ligatures:none; font-weight:600; font-size:1rem; overflow:hidden;
+  transition:background .3s, border-color .3s, opacity .3s}
+.cu-v{display:block}
+.cu-ptrs{display:flex; flex-direction:column; align-items:center; gap:2px; min-height:1.3rem}
+.cu-ptr{font-family:var(--mono); font-size:.72rem; font-weight:600; color:var(--col); display:flex; flex-direction:column; align-items:center; line-height:1.05}
+.cu-caret{font-size:.6rem}
+.d2 .cu-ptrs{position:absolute; left:2px; top:1px; min-height:0; flex-direction:row; gap:3px}
+.d2 .cu-ptr{font-size:.6rem; background:var(--surface); border-radius:3px; padding:0 2px}
+.cu-cell.win .cu-box{background:var(--hl-soft); border-color:var(--hl)}
+.cu-cell.cmp .cu-box{border-color:var(--ink); border-width:2.5px}
+.cu-cell.swap .cu-box{background:var(--hl-soft)}
+.cu-cell.fix .cu-box{background:var(--r-soft); border-color:var(--r); color:var(--r)}
+.cu-cell.out .cu-box{opacity:.35; border-style:dashed}
+.cu-legend{display:flex; flex-wrap:wrap; justify-content:center; gap:.3rem .9rem; font-size:.78rem; color:var(--muted); margin:.3rem 0 0; min-height:1.2em; max-width:none}
+.cu-key::before{content:""; display:inline-block; width:.8em; height:.8em; border-radius:3px; margin-right:.35em; vertical-align:-.1em; border:1.5px solid var(--line)}
+.cu-key.cmp::before{border:2.5px solid var(--ink)}
+.cu-key.fix::before{background:var(--r-soft); border-color:var(--r)}
+.cu-key.out::before{border-style:dashed; opacity:.6}
+.cu-key.win::before{background:var(--hl-soft); border-color:var(--hl)}
+@media (max-width:560px){
+  .cu-box{width:2.3rem; height:2.3rem; font-size:.9rem}
+  .cu-grid.d2{grid-template-columns:auto repeat(var(--cols), 2.3rem)}
+}

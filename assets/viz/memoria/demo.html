@@ -1,0 +1,19 @@
+<div class="viz" data-viz="memoria" aria-label="Pila y montículo al copiar referencias, mutar un objeto compartido y liberar memoria">
+  <script type="application/json">
+  {
+    "intro": "Los objetos viven en el montículo; las variables de la pila guardan referencias a ellos.",
+    "tituloCodigo": "Ejecución",
+    "pasos": [
+      { "codigo": "let a = { n: 1 };", "crear": [{ "id": "1", "campos": { "n": 1 } }], "vars": { "a": { "ref": "1" } }, "texto": "Se crea un objeto en el montículo; a guarda una referencia a él, no el objeto." },
+      { "codigo": "let b = a;", "vars": { "b": { "ref": "1" } }, "texto": "b = a copia la referencia: ahora hay dos flechas hacia el mismo objeto." },
+      { "codigo": "b.n = 2;", "mutar": [{ "id": "1", "campo": "n", "valor": 2 }], "texto": "Mutar a través de b cambia el único objeto que existe: a.n también vale 2." },
+      { "codigo": "let c = { ...a };", "crear": [{ "id": "2", "campos": { "n": 2 } }], "vars": { "c": { "ref": "2" } }, "texto": "El spread crea un objeto nuevo con una copia de las propiedades: c no comparte nada con a." },
+      { "codigo": "subir(c);", "llamar": "subir(o)", "vars": { "o": { "ref": "2" } }, "texto": "Al llamar a subir, el parámetro o recibe una copia de la referencia de c: apunta al mismo objeto." },
+      { "codigo": "  o.n += 1;  // dentro de subir", "mutar": [{ "id": "2", "campo": "n", "valor": 3 }], "texto": "La función muta el objeto de c a través de o. El objeto de a no cambia: sigue en 2." },
+      { "codigo": "// subir termina", "volver": true, "texto": "Al volver, el marco de subir desaparece con su variable o. El cambio en el objeto permanece: c.n vale 3." },
+      { "codigo": "a = null; b = null;", "vars": { "a": null, "b": null }, "texto": "Ninguna variable apunta ya al objeto #1: queda sin referencias." },
+      { "recolectar": true, "texto": "El recolector de basura puede liberarlo en algún momento; JavaScript no garantiza cuándo." }
+    ]
+  }
+  </script>
+</div>

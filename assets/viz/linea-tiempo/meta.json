@@ -1,0 +1,22 @@
+{
+  "name": "linea-tiempo",
+  "titulo": "Línea de tiempo y colas",
+  "forma": ["tiempo", "concurrencia", "colas", "ciclo de vida"],
+  "cuando": "Modo «eventos»: qué pasa en cada carril a lo largo del tiempo (render, commit y efectos de React, peticiones en paralelo, reintentos). Modo «cola»: el contenido de pilas y colas en cada paso (bucle de eventos, pila de llamadas, microtareas, consola).",
+  "cuandoNo": "Mensajes entre actores donde importa quién llama a quién (usa «secuencia»). Una sola secuencia lineal sin carriles (usa «traza»). Más de 5 carriles o 12 pasos: divide.",
+  "config": {
+    "modo": "eventos | cola (por defecto eventos)",
+    "intro": "Leyenda del paso 0.",
+    "carriles": [{ "id": "render", "nombre": "Render", "serie": 1, "tipo": "solo en modo cola: pila | cola | salida" }],
+    "eje": { "inicio": 0, "fin": 13, "unidad": "ms", "marcas": ["números (se muestran con la unidad, separada por un espacio fino) o texto propio { \"t\": 5.5, \"texto\": \"count: 0 → 1\" } (se muestra tal cual, sin unidad); sin marcas se calculan marcas redondas"] },
+    "eventos": [
+      { "carril": "render", "t": 0.5, "fin": 2, "etiqueta": "con fin: tramo; sin fin: punto", "nota": "Leyenda del paso", "paso": "opcional: eventos con el mismo valor aparecen juntos" }
+    ],
+    "ancho": 680,
+    "codigo": { "lang": "js", "titulo": "script.js", "codigo": "solo modo cola: programa; cada paso resalta \"linea\"" },
+    "inicial": { "pila": ["script principal"] },
+    "pasos": [
+      { "linea": 1, "contenido": { "pila": ["script principal", "console.log('A')"] }, "imprime": "A", "activo": "pila", "texto": "Leyenda. Los carriles omitidos conservan su contenido; imprime se acumula en el carril de salida." }
+    ]
+  }
+}

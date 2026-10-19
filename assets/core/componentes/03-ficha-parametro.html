@@ -1,0 +1,23 @@
+<!-- {"titulo": "Ficha de parámetro", "cuando": "Una diapositiva por parámetro: tipo, si es obligatorio, valores válidos (chips verdes) e inválidos (chips rojos)."} -->
+<div class="param-head">
+  <div class="badge a">a</div>
+  <div><h2 style="margin:0">Primer sumando</h2><p class="muted" style="margin:0">El primer valor que va a la suma.</p></div>
+</div>
+<dl class="facts">
+  <div><dt>Tipo</dt><dd><code>number</code></dd></div>
+  <div><dt>Obligatorio</dt><dd>Sí</dd></div>
+  <div><dt>Acepta</dt><dd>Enteros y decimales</dd></div>
+</dl>
+<h3>Sí puede ir en <span class="pa">a</span></h3>
+<div class="chips">
+  <span class="chip ok" style="--i:0"><span>7</span><small>entero</small></span>
+  <span class="chip ok" style="--i:1"><span>-3</span><small>negativo</small></span>
+  <span class="chip ok" style="--i:2"><span>2.5</span><small>decimal</small></span>
+  <span class="chip ok" style="--i:3"><span>0</span><small>cero</small></span>
+</div>
+<h3>No puede ir en <span class="pa">a</span></h3>
+<div class="chips">
+  <span class="chip no" style="--i:4"><span>"7"</span><small>texto</small></span>
+  <span class="chip no" style="--i:5"><span>true</span><small>booleano</small></span>
+  <span class="chip no" style="--i:6"><span>null</span><small>vacío</small></span>
+</div>

@@ -1,0 +1,17 @@
+/* viz: join */
+.jn-top{display:flex; flex-wrap:wrap; gap:.6rem 1.2rem; align-items:flex-start; margin-bottom:.6rem}
+.jn-ctrl{flex:1 1 280px; min-width:0}
+.jn-pick{display:flex; flex-wrap:wrap; gap:.4rem; margin-bottom:.5rem}
+.jn-pick .viz-btn{font-family:var(--mono); font-size:.8rem}
+.viz .jn-sql{font-size:clamp(.78rem,2.2vw,.95rem); margin:0; padding:.7rem .9rem; line-height:1.55}
+.jn-venn{flex:0 0 132px; margin:0 auto}
+.jn-pair{position:relative; display:grid; grid-template-columns:auto clamp(28px,7vw,72px) auto; align-items:start; width:max-content; padding:.2rem 0}
+.viz .jn-lines{position:absolute; left:0; top:0; max-width:none; pointer-events:none; overflow:visible}
+.jn-line{fill:none; stroke:var(--muted); stroke-width:1.5; opacity:.45}
+.jn-line.now{stroke:var(--hl); stroke-width:3; opacity:1}
+.vt td.jn-key,.vt th.jn-key{font-weight:600}
+.vt th.jn-key .vt-name{text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:3px}
+.jn-res{margin-top:1rem}
+.vt tr td.jn-pad{background:var(--err-soft)}
+.vt tr.jn-pend td{visibility:hidden}
+.jn-note{font-size:.85rem; color:var(--muted); margin:.5rem 0 0}

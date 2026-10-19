@@ -1,0 +1,17 @@
+/* viz: orden-sql */
+.viz .osql-q{font-size:clamp(.82rem,2.3vw,1.05rem); margin:0 0 .8rem; line-height:1.75; padding-left:2.6em}
+.osql-frag{position:relative; border-radius:5px; padding:0 .15em; transition:background .35s, box-shadow .35s, opacity .35s}
+.osql-frag.lit{background:rgba(255,255,255,.12); box-shadow:0 0 0 2px rgba(255,255,255,.55)}
+.osql-n{display:inline-grid; place-items:center; position:absolute; left:-2.1em; top:.2em; width:1.5em; height:1.5em; border-radius:999px; font-size:.72em; font-weight:600;
+  background:var(--cb); color:var(--code-bg); opacity:0; transform:scale(.6); transition:opacity .3s, transform .3s}
+.osql-frag.seen .osql-n{opacity:1; transform:none}
+.osql-pipe{list-style:none; display:flex; flex-wrap:wrap; align-items:center; gap:.45rem 0; margin:0 0 .9rem; padding:0 0 .2rem}
+.osql-chip{display:flex; align-items:center; gap:.35rem; font-family:var(--mono); font-size:.82rem; font-weight:600; padding:.3rem .6rem; border-radius:999px;
+  border:1.5px solid var(--line); color:var(--muted); background:var(--surface); transition:background .3s, color .3s, border-color .3s}
+.osql-chip + .osql-chip{margin-left:1.05rem; position:relative}
+.osql-chip + .osql-chip::before{content:"→"; position:absolute; left:-1.1rem; color:var(--muted); font-weight:400}
+.osql-i{font-size:.7rem; opacity:.8}
+.osql-chip.done{color:var(--ink); border-color:var(--ink)}
+.osql-chip.on{background:var(--ink); color:var(--bg); border-color:var(--ink)}
+.osql-stage{min-height:3rem}
+.vt tr.osql-grp td:first-child{box-shadow:inset 4px 0 0 var(--grp)}

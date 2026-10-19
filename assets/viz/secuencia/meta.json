@@ -1,0 +1,16 @@
+{
+  "name": "secuencia",
+  "titulo": "Diagrama de secuencia",
+  "forma": ["secuencia", "petición-respuesta", "protocolo", "actores"],
+  "cuando": "Protocolos y conversaciones entre actores: quién llama a quién, en qué orden, qué es síncrono y qué no (login, OAuth, handshake, llamadas entre servicios). Un mensaje por paso.",
+  "cuandoNo": "Un dato que atraviesa capas en línea recta y cambia de forma (usa «capas»). Más de 5 actores o 12 mensajes: divide el diagrama. Si importa la duración o la concurrencia en el tiempo, usa «linea-tiempo».",
+  "config": {
+    "intro": "Leyenda del paso 0.",
+    "actores": [{ "id": "nav", "nombre": "Navegador", "serie": 1 }, { "id": "api", "nombre": "API" }],
+    "mensajes": [
+      { "desde": "nav", "hacia": "api", "texto": "POST /login", "tipo": "sync | async | retorno", "explica": "Leyenda del paso (por defecto, el texto)" },
+      { "desde": "api", "hacia": "api", "texto": "llamada a sí mismo", "tipo": "sync" },
+      { "nota": "texto de la nota", "sobre": ["api"], "explica": "Leyenda del paso" }
+    ]
+  }
+}

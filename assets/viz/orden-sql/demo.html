@@ -1,0 +1,47 @@
+<div class="viz" data-viz="orden-sql" aria-label="Orden lógico de ejecución de una consulta SELECT sobre notas">
+  <script type="application/json">
+  {
+    "intro": "Así se escribe: empieza por SELECT. Pero el motor no la ejecuta en ese orden. Avanza para verlo.",
+    "consulta": [
+      ["SELECT materia, COUNT(*) AS n, AVG(nota) AS media", "select"],
+      ["\nFROM notas", "from"],
+      ["\nWHERE nota >= 5", "where"],
+      ["\nGROUP BY materia", "group"],
+      ["\nHAVING COUNT(*) >= 2", "having"],
+      ["\nORDER BY media DESC", "order"],
+      ["\nLIMIT 2", "limit"],
+      [";", ""]
+    ],
+    "etapas": [
+      { "id": "from", "nombre": "FROM", "texto": "Primero FROM: el motor lee todas las filas de notas. Aún no se ha filtrado ni calculado nada.",
+        "tabla": { "titulo": "notas", "serie": 1,
+          "columnas": [{ "nombre": "alumno", "tipo": "TEXT" }, { "nombre": "materia", "tipo": "TEXT" }, { "nombre": "nota", "tipo": "INTEGER" }],
+          "filas": [["Ana", "Mate", 8], ["Ana", "Arte", 4], ["Luis", "Mate", 6], ["Luis", "Arte", 9], ["Eva", "Mate", 3], ["Eva", "Física", 7], ["Iván", "Arte", 7], ["Iván", "Física", 5], ["Sara", "Música", 10]] } },
+      { "id": "where", "nombre": "WHERE", "texto": "WHERE nota >= 5 descarta fila por fila las notas menores que 5. Todavía no existen grupos.",
+        "tabla": { "titulo": "tras WHERE", "serie": 1, "resaltarColumna": "nota", "tachar": [1, 4],
+          "columnas": ["alumno", "materia", "nota"],
+          "filas": [["Ana", "Mate", 8], ["Ana", "Arte", 4], ["Luis", "Mate", 6], ["Luis", "Arte", 9], ["Eva", "Mate", 3], ["Eva", "Física", 7], ["Iván", "Arte", 7], ["Iván", "Física", 5], ["Sara", "Música", 10]] } },
+      { "id": "group", "nombre": "GROUP BY", "texto": "GROUP BY materia junta las 7 filas que quedan en 4 grupos, uno por materia.",
+        "tabla": { "titulo": "grupos por materia", "serie": 1, "resaltarColumna": "materia", "grupos": [0, 0, 1, 1, 2, 2, 3],
+          "columnas": ["materia", "alumno", "nota"],
+          "filas": [["Arte", "Luis", 9], ["Arte", "Iván", 7], ["Física", "Eva", 7], ["Física", "Iván", 5], ["Mate", "Ana", 8], ["Mate", "Luis", 6], ["Música", "Sara", 10]] } },
+      { "id": "having", "nombre": "HAVING", "texto": "HAVING filtra grupos, no filas: Música solo tiene 1 nota y se descarta, aunque sea la media más alta.",
+        "tabla": { "titulo": "un renglón por grupo", "serie": 1, "tachar": [3], "grupos": [0, 1, 2, 3],
+          "columnas": ["materia", "COUNT(*)", "AVG(nota)"],
+          "filas": [["Arte", 2, "8.0"], ["Física", 2, "6.0"], ["Mate", 2, "7.0"], ["Música", 1, "10.0"]] } },
+      { "id": "select", "nombre": "SELECT", "texto": "Recién ahora SELECT elige las columnas y les pone nombre: n y media. Por eso, en SQL estándar, WHERE no puede usar el alias media (SQLite lo tolera como extensión).",
+        "tabla": { "titulo": "tras SELECT", "serie": "r", "resaltarColumna": ["n", "media"],
+          "columnas": ["materia", "n", "media"],
+          "filas": [["Arte", 2, "8.0"], ["Física", 2, "6.0"], ["Mate", 2, "7.0"]] } },
+      { "id": "order", "nombre": "ORDER BY", "texto": "ORDER BY media DESC ordena de mayor a menor. Aquí sí se puede usar el alias, porque SELECT ya se ejecutó.",
+        "tabla": { "titulo": "tras ORDER BY", "serie": "r", "resaltarColumna": "media",
+          "columnas": ["materia", "n", "media"],
+          "filas": [["Arte", 2, "8.0"], ["Mate", 2, "7.0"], ["Física", 2, "6.0"]] } },
+      { "id": "limit", "nombre": "LIMIT", "texto": "Por último, LIMIT 2 se queda con las dos primeras filas ya ordenadas. Este es el resultado.",
+        "tabla": { "titulo": "resultado", "serie": "r",
+          "columnas": ["materia", "n", "media"],
+          "filas": [["Arte", 2, "8.0"], ["Mate", 2, "7.0"]] } }
+    ]
+  }
+  </script>
+</div>

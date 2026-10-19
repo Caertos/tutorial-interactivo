@@ -1,0 +1,9 @@
+<!-- {"titulo": "Retorno", "cuando": "Qué devuelve la unidad: firma, flecha y tipo del resultado en verde."} -->
+<div class="ret">
+  <code style="font-size:1.3rem">sum(<span class="pa">a</span>, <span class="pb">b</span>)</code>
+  <span class="arrow">⟶</span>
+  <span class="tag r" style="font-size:1.3rem">number</span>
+</div>
+<p>Siempre un número cuando <span class="pa mono">a</span> y <span class="pb mono">b</span> son números. No modifica los valores que le pasaste: crea uno nuevo.</p>
+<pre class="code">sum(<span class="fa">0.1</span>, <span class="fb">0.2</span>);   <span class="c">// 0.30000000000000004</span>
+<span class="k">Number</span>(sum(<span class="fa">0.1</span>, <span class="fb">0.2</span>).toFixed(<span class="s">2</span>)); <span class="c">// 0.3</span></pre>

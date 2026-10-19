@@ -1,0 +1,28 @@
+/* viz: grafo */
+.gf text{font-family:var(--mono)}
+.gf-edge{fill:none; stroke:var(--muted); stroke-width:1.6}
+.gf-edge.dash{stroke-dasharray:5 4}
+.gf-edge.now{stroke:var(--hl); stroke-width:2.6}
+.gf-elbg{fill:var(--bg)}
+.gf-elbl{font-size:11.5px; fill:var(--muted)}
+.gf-box{fill:var(--surface); stroke:var(--line); stroke-width:1.5}
+.gf-node.done .gf-box{fill:var(--r-soft); stroke:var(--r)}
+.gf-node.now .gf-box{fill:var(--hl-soft); stroke:var(--hl); stroke-width:2.5}
+.gf-lbl{font-size:13.5px; fill:var(--ink)}
+.gf-node.now .gf-lbl{font-weight:600}
+.gf-det{font-size:11.5px; fill:var(--muted)}
+.gf-ord{fill:var(--r)}
+.gf .gf-ord-t{font-size:11px; font-weight:600; fill:var(--surface)}
+/* git mode */
+.gf-lane{stroke:var(--line); stroke-width:1; stroke-dasharray:2 6}
+.gf-gedge{fill:none; stroke-width:3; stroke-linecap:round}
+.gf-gedge.dim{opacity:.3; stroke-dasharray:4 5}
+.gf-dot{fill:var(--surface); stroke-width:3}
+.gf-commit.now .gf-dot{fill:var(--hl-soft); stroke-width:4}
+.gf-commit.dim{opacity:.38}
+.gf-commit.dim .gf-dot{stroke-dasharray:4 3}
+.gf-cid{font-size:12px; font-weight:600; fill:var(--ink)}
+.gf-msg{font-family:var(--display); font-size:11.5px; fill:var(--muted)}
+.gf-tag rect{stroke-width:1.3}
+.gf-tag text{font-size:12px; fill:var(--ink)}
+.gf-tag.head text{font-weight:600}
